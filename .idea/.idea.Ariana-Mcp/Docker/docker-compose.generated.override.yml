@@ -1,21 +1,21 @@
 # This is a generated file. Not intended for manual editing.
 services:
-  ariana-mcp:
+  Ariana-Mcp:
     build:
-      context: "C:\\src\\ariana-mcp\\ariana-mcp"
+      context: "C:\\src\\ariana-mcp\\Ariana-Mcp"
       dockerfile: "Dockerfile"
       target: "base"
     command: []
     entrypoint:
     - "dotnet"
-    - "/app/bin/Debug/net10.0/ariana-mcp.dll"
+    - "/app/bin/Debug/net10.0/Ariana-Mcp.dll"
     environment:
       DOTNET_ENVIRONMENT: "Development"
       DOTNET_USE_POLLING_FILE_WATCHER: "true"
-    image: "ariana-mcp:dev"
+    image: "Ariana-Mcp:dev"
     ports: []
     volumes:
-    - "C:\\src\\ariana-mcp\\ariana-mcp:/app:rw"
+    - "C:\\src\\ariana-mcp\\Ariana-Mcp:/app:rw"
     - "C:\\src\\ariana-mcp:/src:rw"
     - "C:\\Users\\c.stockinger\\.nuget\\packages:/home/app/.nuget/packages"
     working_dir: "/app"

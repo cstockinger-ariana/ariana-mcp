@@ -2,7 +2,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using Microsoft.Extensions.Options;
 
-namespace ariana_mcp.Integrations.AraianLab;
+namespace Ariana_Mcp.Integrations.AraianLab;
 
 public sealed class AraianLabAuthHandler(IOptions<AraianLabClientOptions> options) : DelegatingHandler
 {
@@ -22,4 +22,3 @@ public sealed class AraianLabAuthHandler(IOptions<AraianLabClientOptions> option
         return base.SendAsync(request, cancellationToken);
     }
 }
-

@@ -1,18 +1,20 @@
+using Ariana_Mcp.integrations.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace ariana_mcp.Integrations.AraianLab;
+namespace Ariana_Mcp.Integrations.AraianLab;
 
-internal static class ServiceCollectionExtensions
+public static class ServiceCollectionExtensions
 {
-    internal static IServiceCollection AddAraianLabHttpClient(
+    public static IServiceCollection AddAraianLabHttpClient(
         this IServiceCollection services,
         IConfiguration configuration)
     {
         services.Configure<AraianLabClientOptions>(
             configuration.GetSection(AraianLabClientOptions.SectionName));
         services.AddTransient<AraianLabAuthHandler>();
+        services.AddTransient<CustomerService>();
         services.AddHttpClient(ArianaLabHttp.ClientName, (sp, client) =>
             {
                 var options = sp.GetRequiredService<IOptions<AraianLabClientOptions>>().Value;
@@ -24,4 +26,3 @@ internal static class ServiceCollectionExtensions
         return services;
     }
 }
-

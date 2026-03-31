@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Steeltoe.Extensions.Configuration.Placeholder;
 
-namespace ariana_mcp.Configuration;
+namespace Ariana_Mcp.Configuration;
 
 internal static class ConfigurationAppSettingsExtensions
 {

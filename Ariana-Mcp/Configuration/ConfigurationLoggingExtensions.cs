@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Serilog;
 
-namespace ariana_mcp.Configuration;
+namespace Ariana_Mcp.Configuration;
 
 public static class ConfigurationLoggingExtensions
 {

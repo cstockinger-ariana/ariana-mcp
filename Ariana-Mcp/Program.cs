@@ -1,6 +1,6 @@
 using System.Reflection;
-using ariana_mcp.Configuration;
-using ariana_mcp.Integrations.AraianLab;
+using Ariana_Mcp.Configuration;
+using Ariana_Mcp.Integrations.AraianLab;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,8 +17,6 @@ builder.Services.AddAraianLabHttpClient(builder.Configuration);
 builder.Services
     .AddMcpServer()
     .WithHttpTransport(o => o.Stateless = true)
-    .WithPromptsFromAssembly()
-    .WithResourcesFromAssembly()
     .WithToolsFromAssembly();
 
 var app = builder.Build();
@@ -26,7 +24,7 @@ var app = builder.Build();
 app.MapGet("/", () =>
 {
     var asm = Assembly.GetExecutingAssembly();
-    var name = asm.GetName().Name ?? "ariana-mcp";
+    var name = asm.GetName().Name ?? "Ariana-Mcp";
     var version =
         asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
         ?? asm.GetName().Version?.ToString()

@@ -1,4 +1,4 @@
-namespace ariana_mcp.Integrations.AraianLab;
+namespace Ariana_Mcp.Integrations.AraianLab;
 
 public sealed class AraianLabClientOptions
 {
@@ -11,4 +11,3 @@ public sealed class AraianLabClientOptions
     /// <summary>Optional base URL for requests (e.g. https://api.example.com).</summary>
     public string? BaseUrl { get; set; }
 }
-

@@ -1,7 +1,9 @@
+name: Ariana-Mcp
+
 services:
-  ariana-mcp:
+  Ariana-Mcp:
     build:
-      context: ariana-mcp
+      context: Ariana-Mcp
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
@@ -21,7 +23,7 @@ services:
     volumes:
       - open-webui-data:/app/backend/data
     depends_on:
-      - ariana-mcp
+      - Ariana-Mcp
     restart: unless-stopped
 
 volumes:
