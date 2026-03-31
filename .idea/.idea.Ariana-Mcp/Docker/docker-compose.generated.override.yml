@@ -12,7 +12,7 @@ services:
     environment:
       DOTNET_ENVIRONMENT: "Development"
       DOTNET_USE_POLLING_FILE_WATCHER: "true"
-    image: "Ariana-Mcp:dev"
+    image: "ariana-mcp:dev"
     ports: []
     volumes:
     - "C:\\src\\ariana-mcp\\Ariana-Mcp:/app:rw"

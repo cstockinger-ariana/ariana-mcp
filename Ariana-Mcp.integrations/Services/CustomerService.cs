@@ -1,9 +1,9 @@
 using System.Text.Json;
-using Ariana_Mcp.Integrations.AraianLab;
 
 namespace Ariana_Mcp.integrations.Services;
 
 public sealed class CustomerService(IHttpClientFactory httpClientFactory)
+    : ArianaLabServiceBase(httpClientFactory)
 {
     public async Task<string> GetCustomerByNameAsync(string name, CancellationToken cancellationToken = default)
     {
@@ -21,27 +21,26 @@ public sealed class CustomerService(IHttpClientFactory httpClientFactory)
         return customer.Body;
     }
 
+    public async Task<string> GetCustomerInfoAsync(
+        string customerId,
+        CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(customerId))
+            return "customerId must not be empty.";
+
+        var client = CreateClient();
+        var response = await GetAsStringAsync(
+            client,
+            $"Rest/Mad/Kunden/{Uri.EscapeDataString(customerId)}/KundenInformationen",
+            cancellationToken);
+        return response.Body;
+    }
+
     public async Task<string> GetAllCustomersAsync(CancellationToken cancellationToken = default)
     {
         var client = CreateClient();
         var response = await GetAsStringAsync(client, "Rest/Mad/Kunden", cancellationToken);
         return response.Body;
-    }
-
-    private HttpClient CreateClient() => httpClientFactory.CreateClient(ArianaLabHttp.ClientName);
-
-    private static async Task<HttpResult> GetAsStringAsync(
-        HttpClient client,
-        string requestUri,
-        CancellationToken cancellationToken)
-    {
-        using var response = await client.GetAsync(requestUri, cancellationToken).ConfigureAwait(false);
-        var body = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-        return response.IsSuccessStatusCode
-            ? new HttpResult(true, body)
-            : new HttpResult(
-                false,
-                $"HTTP {(int)response.StatusCode} {response.ReasonPhrase}: {body}");
     }
 
     private static string TryGetKundeId(string json)
@@ -65,6 +64,4 @@ public sealed class CustomerService(IHttpClientFactory httpClientFactory)
             return $"Invalid JSON ({ex.Message}): {json}";
         }
     }
-
-    private sealed record HttpResult(bool IsSuccess, string Body);
 }
