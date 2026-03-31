@@ -1,0 +1,28 @@
+services:
+  ariana-mcp:
+    build:
+      context: ariana-mcp
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:5000
+      ARIANALAB_USER: "c.stockinger"
+      ARIANALAB_PASSWORD: "jzh3bUcU2oYnmN5dS"
+    restart: unless-stopped
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "8080:8080"
+    environment:
+      OLLAMA_BASE_URL: http://10.47.0.1:11434/
+      WEBUI_AUTH: False
+    volumes:
+      - open-webui-data:/app/backend/data
+    depends_on:
+      - ariana-mcp
+    restart: unless-stopped
+
+volumes:
+  open-webui-data:
