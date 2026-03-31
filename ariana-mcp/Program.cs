@@ -18,6 +18,7 @@ builder.Services
     .AddMcpServer()
     .WithHttpTransport(o => o.Stateless = true)
     .WithPromptsFromAssembly()
+    .WithResourcesFromAssembly()
     .WithToolsFromAssembly();
 
 var app = builder.Build();
