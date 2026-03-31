@@ -15,6 +15,7 @@ public static class ServiceCollectionExtensions
             configuration.GetSection(AraianLabClientOptions.SectionName));
         services.AddTransient<AraianLabAuthHandler>();
         services.AddTransient<CustomerService>();
+        services.AddTransient<SampleService>();
         services.AddHttpClient(ArianaLabHttp.ClientName, (sp, client) =>
             {
                 var options = sp.GetRequiredService<IOptions<AraianLabClientOptions>>().Value;
